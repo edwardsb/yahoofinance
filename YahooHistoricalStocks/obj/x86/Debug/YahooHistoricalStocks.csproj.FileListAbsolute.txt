@@ -1,0 +1,7 @@
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.exe
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.pdb
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.StockForm.resources
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.Properties.Resources.resources
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.csproj.GenerateResource.Cache
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.exe
+\\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.pdb
