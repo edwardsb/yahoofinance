@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockForm));
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.labelDatePickerFrom = new System.Windows.Forms.Label();
@@ -41,6 +42,8 @@
             this.labelLowValue = new System.Windows.Forms.Label();
             this.comboBoxInterval = new System.Windows.Forms.ComboBox();
             this.labelInterval = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePickerFrom
@@ -113,7 +116,7 @@
             // labelLow
             // 
             this.labelLow.AutoSize = true;
-            this.labelLow.Location = new System.Drawing.Point(19, 281);
+            this.labelLow.Location = new System.Drawing.Point(16, 281);
             this.labelLow.Name = "labelLow";
             this.labelLow.Size = new System.Drawing.Size(35, 13);
             this.labelLow.TabIndex = 8;
@@ -150,6 +153,7 @@
             this.comboBoxInterval.Name = "comboBoxInterval";
             this.comboBoxInterval.Size = new System.Drawing.Size(121, 21);
             this.comboBoxInterval.TabIndex = 12;
+            this.comboBoxInterval.SelectedIndexChanged += new System.EventHandler(this.comboBoxInterval_SelectedIndexChanged);
             // 
             // labelInterval
             // 
@@ -160,11 +164,22 @@
             this.labelInterval.TabIndex = 13;
             this.labelInterval.Text = "Interval";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(304, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(261, 40);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // StockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 333);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelInterval);
             this.Controls.Add(this.comboBoxInterval);
             this.Controls.Add(this.labelLowValue);
@@ -180,6 +195,7 @@
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "StockForm";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,6 +216,7 @@
         private System.Windows.Forms.Label labelLowValue;
         private System.Windows.Forms.ComboBox comboBoxInterval;
         private System.Windows.Forms.Label labelInterval;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
