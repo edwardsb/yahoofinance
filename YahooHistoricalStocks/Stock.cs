@@ -16,7 +16,17 @@ namespace YahooHistoricalStocks
         public string dateToYear;
         public string interval;
         public string url;
-        public readonly string stockList[] = {"a","string"};
+        Dictionary<string, string>test = new Dictionary<string, string>();
+
+        public Dictionary<string , string> dictionary()
+        {
+            test.Add("GOOGLE", "GOOG");
+            test.Add("APPLE", "AAPL");
+            test.Add("BANK OF AMERICA", "BAC");
+            test.Add("AMAZON", "AMZN");
+            test.Add("Adobe Systems Inc.", "ADBE");
+        return test;
+        }
 
         public void setDateFrom(int day, int month, int year){
             dateFromDay = day.ToString();
