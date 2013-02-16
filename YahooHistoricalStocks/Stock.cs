@@ -16,6 +16,7 @@ namespace YahooHistoricalStocks
         public string dateToYear;
         public string interval;
         public string url;
+        public readonly string stockList[] = {"a","string"};
 
         public void setDateFrom(int day, int month, int year){
             dateFromDay = day.ToString();

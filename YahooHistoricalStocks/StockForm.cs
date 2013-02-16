@@ -58,14 +58,8 @@ namespace YahooHistoricalStocks
             WebClient webclient = new WebClient();
             try
             {
-                webclient.DownloadFile(uri, @"\\psf\Home\Downloads\foo.csv");
-                byte[] data = webclient.DownloadData(uri);
                 string mystring = webclient.DownloadString(uri);
                 MessageBox.Show("Stock Downloaded");
-                MessageBox.Show(data.Length.ToString());
-                for( int i = 0; i < data.Length; i++){
-                    Console.Out.Write((char)data[i]);
-                }
                 Console.Out.Write(mystring);
                 
             }
