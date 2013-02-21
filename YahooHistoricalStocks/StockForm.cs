@@ -26,18 +26,21 @@ namespace YahooHistoricalStocks
         private void button1_Click(object sender, EventArgs e)
         {
             diff = dateTimePickerTo.Value.Subtract(dateTimePickerFrom.Value);
-           
-            if (textBoxStockName.Text != "")
+           DayOfWeek from = dateTimePickerFrom.Value.DayOfWeek;
+           DayOfWeek to = dateTimePickerTo.Value.DayOfWeek;
+           if (textBoxStockName.Text != "" || ddl.SelectedIndex != 0)
             {
                 if (diff.Days > 0)
                 {
-                   if(selectedInterval!=null)
+                    if (selectedInterval != null && to != DayOfWeek.Saturday && to != DayOfWeek.Sunday && from != DayOfWeek.Saturday && from != DayOfWeek.Sunday)
                    {
-                    downloadFile();
+                       Cursor.Current = Cursors.WaitCursor;
+                        downloadFile();
+                        Cursor.Current = Cursors.Default;
                    }
                    else
                    {
-                       MessageBox.Show("Select Interval");
+                       MessageBox.Show("Select Interval. Monday to Frinday Only!");
                    }
                 }
                 else
@@ -53,7 +56,15 @@ namespace YahooHistoricalStocks
 
         private string downloadFile(){
             string mystring = String.Empty;
-            stocks.setStockName(ddlvalue);
+            if (textBoxStockName.Text !="")
+            {
+                stocks.setStockName(textBoxStockName.Text);
+            }
+            if (ddlvalue != "")
+            {
+                stocks.setStockName(ddlvalue);
+                textBoxStockName.Text = "";
+            }
             stocks.setDateFrom(dateTimePickerFrom.Value.Day, dateTimePickerFrom.Value.Month, dateTimePickerFrom.Value.Year);
             stocks.setDateTo(dateTimePickerTo.Value.Day, dateTimePickerTo.Value.Month, dateTimePickerTo.Value.Year);
             stocks.setInterval(comboBoxInterval.SelectedIndex);
@@ -65,7 +76,7 @@ namespace YahooHistoricalStocks
                 mystring = webclient.DownloadString(uri);
                 MessageBox.Show("Stock Downloaded");
                 string[] split = mystring.Split(new[] { '\n' });
-                table = ArrayToDataTable(split);
+                table = stocks.ArrayToDataTable(split);
 
                 //Block to query MAX and MIN in all decimal type columns ***MAY BE HELPFUL IN THE FUTURE***
                 //var values = table.Rows
@@ -80,9 +91,8 @@ namespace YahooHistoricalStocks
                 var minValue = table.Rows.OfType<DataRow>().Select(row => row["Low"]).Min();
                 labelHighValue.Text = maxValue.ToString();
                 labelLowValue.Text = minValue.ToString();
-
-                Console.Out.Write(mystring);
-
+                ddl.SelectedIndex = 0;
+                
             } 
 
             catch (Exception ex)
@@ -95,43 +105,7 @@ namespace YahooHistoricalStocks
 
         }
 
-        public DataTable ArrayToDataTable(string[] arr)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Date", typeof(DateTime));
-            dt.Columns.Add("Open", typeof(decimal));
-            dt.Columns.Add("High", typeof(decimal));
-            dt.Columns.Add("Low", typeof(decimal));
-            dt.Columns.Add("Close", typeof(decimal));
-            dt.Columns.Add("Avg Vol", typeof(decimal));
-            dt.Columns.Add("Adj Close", typeof(decimal));
-
-            for (int row = 0; row < arr.Length - 1; row++)
-            {
-                if (row != 0)
-                {
-                    string str = arr[row];
-                    string[] item = str.Split(',');
-                    DataRow dr = dt.NewRow();
-                    for (int col = 0; col < item.Length; col++)
-                    {
-                        if (col == 0)
-                        {
-                            dr[col] = DateTime.Parse(item[col]);
-                        }
-                        else
-
-                        {
-                            dr[col] = Decimal.Parse(item[col]);
-                        }
-
-                    }
-                    dt.Rows.Add(dr);
-                }
-            }
-
-            return dt;
-        }
+      
 
         private void comboBoxInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -141,8 +115,8 @@ namespace YahooHistoricalStocks
         private void StockForm_Load(object sender, EventArgs e)
         {
             ddl.DataSource = new BindingSource(stocks.dictionary(), null);
-            ddl.DisplayMember = "Value";
-            ddl.ValueMember = "Key";
+            ddl.DisplayMember = "Key";
+            ddl.ValueMember = "Value";
 
        }
 
