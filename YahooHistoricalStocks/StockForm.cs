@@ -25,23 +25,28 @@ namespace YahooHistoricalStocks
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<DateTime> datelist = getWeekendDays();
+            foreach (DateTime date in datelist)
+            {
+                System.Console.WriteLine("this date is blacked out: " + date);
+            }
             diff = dateTimePickerTo.Value.Subtract(dateTimePickerFrom.Value);
-           DayOfWeek from = dateTimePickerFrom.Value.DayOfWeek;
-           DayOfWeek to = dateTimePickerTo.Value.DayOfWeek;
-           if (textBoxStockName.Text != "" || ddl.SelectedIndex != 0)
+            DayOfWeek from = dateTimePickerFrom.Value.DayOfWeek;
+            DayOfWeek to = dateTimePickerTo.Value.DayOfWeek;
+            if (textBoxStockName.Text != "" || ddl.SelectedIndex != 0)
             {
                 if (diff.Days > 0)
                 {
                     if (selectedInterval != null && to != DayOfWeek.Saturday && to != DayOfWeek.Sunday && from != DayOfWeek.Saturday && from != DayOfWeek.Sunday)
-                   {
-                       Cursor.Current = Cursors.WaitCursor;
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
                         downloadFile();
                         Cursor.Current = Cursors.Default;
-                   }
-                   else
-                   {
-                       MessageBox.Show("Select Interval. Monday to Frinday Only!");
-                   }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Select Interval. Monday to Frinday Only!");
+                    }
                 }
                 else
                 {
@@ -126,6 +131,21 @@ namespace YahooHistoricalStocks
 
             // Get combobox selection (in handler)
             ddlvalue = ((KeyValuePair<string, string>)ddl.SelectedItem).Value;
+        }
+
+        private List<DateTime> getWeekendDays()
+        {
+            List<DateTime> list = new List<DateTime>();
+            int days = DateTime.DaysInMonth(dateTimePickerFrom.Value.Year, dateTimePickerFrom.Value.Month);
+            for (int i = 0; i < days; i++)
+            {
+                DateTime datetime = new DateTime(dateTimePickerFrom.Value.Year, dateTimePickerFrom.Value.Month, i + 1);
+                if (datetime.DayOfWeek == DayOfWeek.Saturday || datetime.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    list.Add(datetime);
+                }
+            }
+            return list;
         }
 
     }
