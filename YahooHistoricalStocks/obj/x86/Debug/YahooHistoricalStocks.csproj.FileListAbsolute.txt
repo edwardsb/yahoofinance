@@ -7,7 +7,6 @@
 \\psf\Home\Documents\Visual Studio 2010\Projects\YahooHistoricalStocks\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.pdb
 C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.exe
 C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.pdb
-C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.StockForm.resources
 C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.Properties.Resources.resources
 C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.csproj.GenerateResource.Cache
 C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.exe
@@ -19,3 +18,11 @@ C:\Users\EdwardsBen\AppData\Local\Apps\2.0\54X7BEOP.HGM\OW7CJRRY.J28\gith..tion_
 C:\Users\EdwardsBen\AppData\Local\Apps\2.0\54X7BEOP.HGM\OW7CJRRY.J28\gith..tion_8f45a2159c87c850_0001.0000_08518f4765fcab80\psf\Home\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.csproj.GenerateResource.Cache
 C:\Users\EdwardsBen\AppData\Local\Apps\2.0\54X7BEOP.HGM\OW7CJRRY.J28\gith..tion_8f45a2159c87c850_0001.0000_08518f4765fcab80\psf\Home\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.exe
 C:\Users\EdwardsBen\AppData\Local\Apps\2.0\54X7BEOP.HGM\OW7CJRRY.J28\gith..tion_8f45a2159c87c850_0001.0000_08518f4765fcab80\psf\Home\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.pdb
+C:\Users\Guido\Documents\GitHub\yahoofinance\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalaCandlesticks.stockForm.resources
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalaCandlesticks.stockForm.resources
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.Properties.Resources.resources
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.csproj.GenerateResource.Cache
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.exe
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.pdb
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.exe
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.pdb

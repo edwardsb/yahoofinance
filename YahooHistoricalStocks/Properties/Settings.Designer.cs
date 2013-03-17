@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YahooHistoricalStocks.Properties
+namespace YahooHistoricalaCandlesticks.Properties
 {
 
 

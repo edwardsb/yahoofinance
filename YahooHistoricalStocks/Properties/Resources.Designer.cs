@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YahooHistoricalStocks.Properties
+namespace YahooHistoricalaCandlesticks.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace YahooHistoricalStocks.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YahooHistoricalStocks.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YahooHistoricalaCandlesticks.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
