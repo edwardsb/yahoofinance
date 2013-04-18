@@ -105,18 +105,18 @@ namespace YahooHistoricalaCandlesticks
                 var high = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("High")).ToList();    // Creates a list from the column "High" in Datatable
                 var low = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Low")).ToList();      // Creates a list from the column "Low"  in Datatable
                 var close = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Close")).ToList();  // Creates a list from the column "Close" in Datatable
-                dataGridView1.DataSource = table;
-                var avg = table.Compute("Avg([Close])", "");
-                decimal roundAvg = Math.Round((decimal)avg,2);
-                var sum = table.Compute("Sum([Avg Vol])", "");
-                labelCloseAvg.Text = roundAvg.ToString();
-                labelSumVol.Text = sum.ToString();
-                var Table = table.AsEnumerable();
-                IEnumerable<DataRow> query = from row in Table
+                dataGridView1.DataSource = table;               //Creates first dataGridView, all Candlesticks
+                var avg = table.Compute("Avg([Close])", "");    //Finds Average closing price using LINQ statement
+                decimal roundAvg = Math.Round((decimal)avg,2);  //Rounds Average result 2 decimal places
+                var sum = table.Compute("Sum([Avg Vol])", "");  //Finds Sum of the volumes
+                labelCloseAvg.Text = roundAvg.ToString();       //Sets Average to labelCloseAvg
+                labelSumVol.Text = sum.ToString();              //Sets Sum to labelSumVol
+                var Table = table.AsEnumerable();               //Converts Datatable into IEnumerable object to be used in LINQ
+                IEnumerable<DataRow> query = from row in Table  //Find dates (rows) where close price is greater than open price
                         where row.Field<decimal>("Open") < row.Field<decimal>("Close")
                         select row;
-                DataTable HighCloseTable = query.CopyToDataTable<DataRow>();
-                dataGridView2.DataSource = HighCloseTable;
+                DataTable HighCloseTable = query.CopyToDataTable<DataRow>(); //Converts IEnumerable object back to Datatable
+                dataGridView2.DataSource = HighCloseTable;                   //Creates secound dataGridView with Candlesticks where close price is greater than open price
                 if (seriesExist(chart1, "Price")) //Check is Series "Price" exists
                 {
                     chart1.Series.Clear();         //if True Clear the Series
