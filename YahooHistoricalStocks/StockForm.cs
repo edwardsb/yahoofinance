@@ -6,7 +6,6 @@ Authors:
 using System;
 using System.Collections.Generic;
 using System.Data;
-
 using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
@@ -42,9 +41,9 @@ namespace YahooHistoricalaCandlesticks
                     {
                         if (selectedInterval != null)
                         {
-                        //   Cursor.Current = Cursors.WaitCursor;  //Sets cursor busy
-                            downloadFile();                       //Calls main function
-                         //  Cursor.Current = Cursors.Default;     //Sets cursor default
+                            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;  //Sets cursor busy
+                            downloadFile();                                            //Calls main function
+                            System.Windows.Forms.Cursor.Current = Cursors.Default;     //Sets cursor default
                         }
                         else
                         {
@@ -68,12 +67,12 @@ namespace YahooHistoricalaCandlesticks
 
         }
 
-        private string downloadFile() //Downloads quote using Yahoo Finance API
+        private void downloadFile() //Downloads quote using Yahoo Finance API
         {
             string mystring = String.Empty;
             if (textBoxaCandlestickName.Text != "")   // Logic makes stock name textbox and dropdownlist mutually exclusive.
             {
-                aCandlesticks.setaCandlestickName(textBoxaCandlestickName.Text); 
+                aCandlesticks.setaCandlestickName(textBoxaCandlestickName.Text);
                 lblTicker.Text = textBoxaCandlestickName.Text;
                 textBoxaCandlestickName.Text = "";
             }
@@ -101,58 +100,57 @@ namespace YahooHistoricalaCandlesticks
                 labelLowValue.Text = minValue.ToString();                                    //Sets Min value to   labelLowValue
                 ddl.SelectedIndex = 0;                                                       //Sets Index in dropdownlist back to 0
 
-                var labels = table.Rows.OfType<DataRow>().Select(dr => dr.Field<DateTime>("Date")).ToList();
-                var open = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Open")).ToList();
-                var high = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("High")).ToList();
-                var low = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Low")).ToList();
-                var close = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Close")).ToList();
-
-                 if (seriesExist(chart1, "Price")) 
+                var labels = table.Rows.OfType<DataRow>().Select(dr => dr.Field<DateTime>("Date")).ToList(); // Creates a list from the column "Date" in Datatable
+                var open = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Open")).ToList();    // Creates a list from the column "Open" in Datatable
+                var high = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("High")).ToList();    // Creates a list from the column "High" in Datatable
+                var low = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Low")).ToList();      // Creates a list from the column "Low"  in Datatable
+                var close = table.Rows.OfType<DataRow>().Select(dr => dr.Field<Decimal>("Close")).ToList();  // Creates a list from the column "Close" in Datatable
+                dataGridView1.DataSource = table;
+                var avg = table.Compute("Avg([Close])", "");
+                decimal roundAvg = Math.Round((decimal)avg,2);
+                var sum = table.Compute("Sum([Avg Vol])", "");
+                labelCloseAvg.Text = roundAvg.ToString();
+                labelSumVol.Text = sum.ToString();
+                var Table = table.AsEnumerable();
+                IEnumerable<DataRow> query = from row in Table
+                        where row.Field<decimal>("Open") < row.Field<decimal>("Close")
+                        select row;
+                DataTable HighCloseTable = query.CopyToDataTable<DataRow>();
+                dataGridView2.DataSource = HighCloseTable;
+                if (seriesExist(chart1, "Price")) //Check is Series "Price" exists
                 {
-                    chart1.Series.Clear();
-                }
-               
-                    Series Price = new Series("Price"); // <<== make sure to name the series "price"
-                    chart1.Series.Add(Price);
-
-                    // Set series chart type
-                    chart1.Series["Price"].ChartType = SeriesChartType.Candlestick;
-
-
-
-                    // Set the style of the open-close marks
-                    chart1.Series["Price"]["OpenCloseStyle"] = "Triangle";
-
-                    // Show both open and close marks
-                    chart1.Series["Price"]["ShowOpenClose"] = "Both";
-
-                    // Set point width
-                    chart1.Series["Price"]["PointWidth"] = "1.0";
-
-                    // Set colors bars
-                    chart1.Series["Price"]["PriceUpColor"] = "Green";
-                    chart1.Series["Price"]["PriceDownColor"] = "Red";
-
-                    for (int i = 0; i < labels.Count; i++)
-                    {
-                        // adding date and high
-                        chart1.Series["Price"].Points.AddXY(labels[i], high[i]);
-                        // adding low
-                        chart1.Series["Price"].Points[i].YValues[1] = Convert.ToDouble(low[i]);
-                        //adding open
-                        chart1.Series["Price"].Points[i].YValues[2] = Convert.ToDouble(open[i]);
-                        // adding close
-                        chart1.Series["Price"].Points[i].YValues[3] = Convert.ToDouble(close[i]);
-                    }
+                    chart1.Series.Clear();         //if True Clear the Series
                 }
 
-           catch (Exception ex)
+                Series Price = new Series("Price"); // Creates a Series named "Price"
+                chart1.Series.Add(Price);           // Adds Series to chart1
+
+
+                chart1.Series["Price"].ChartType = SeriesChartType.Candlestick; // Set Series chart-type to Candlestick
+
+                chart1.Series["Price"]["OpenCloseStyle"] = "Triangle"; // Set the style of the open-close marks
+
+                chart1.Series["Price"]["ShowOpenClose"] = "Both";  // Show both open and close marks
+
+                chart1.Series["Price"]["PointWidth"] = "1.0"; // Set point width
+
+                chart1.Series["Price"]["PriceUpColor"] = "Green"; // Set colors bars
+                chart1.Series["Price"]["PriceDownColor"] = "Red";
+
+                for (int i = 0; i < labels.Count; i++)
+                {
+                    chart1.Series["Price"].Points.AddXY(labels[i], high[i]); // Adding date and high
+                    chart1.Series["Price"].Points[i].YValues[1] = Convert.ToDouble(low[i]);   // Adding low                   
+                    chart1.Series["Price"].Points[i].YValues[2] = Convert.ToDouble(open[i]);  // Adding open                       
+                    chart1.Series["Price"].Points[i].YValues[3] = Convert.ToDouble(close[i]); // Adding close
+                }
+            }
+
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error Downloading File");
 
             }
-            
-            return mystring;
 
         }
 
@@ -173,7 +171,6 @@ namespace YahooHistoricalaCandlesticks
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
 
             // Get combobox selection
             ddlvalue = ((KeyValuePair<string, string>)ddl.SelectedItem).Value;

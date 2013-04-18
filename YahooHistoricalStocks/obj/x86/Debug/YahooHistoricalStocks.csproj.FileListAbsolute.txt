@@ -26,3 +26,4 @@ C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\bin\De
 C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\bin\Debug\YahooHistoricalStocks.pdb
 C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.exe
 C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.pdb
+C:\Users\Guido\Documents\GitHub\yahoofinance - Copy\YahooHistoricalStocks\obj\x86\Debug\YahooHistoricalStocks.csprojResolveAssemblyReference.cache
