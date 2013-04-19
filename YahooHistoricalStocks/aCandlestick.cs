@@ -135,7 +135,7 @@ namespace YahooHistoricalaCandlesticks
             dt.Columns.Add("High", typeof(decimal));
             dt.Columns.Add("Low", typeof(decimal));
             dt.Columns.Add("Close", typeof(decimal));
-            dt.Columns.Add("Avg Vol", typeof(decimal));
+            dt.Columns.Add("Volume", typeof(decimal));
             dt.Columns.Add("Adj Close", typeof(decimal));
 
             for (int row = 0; row < array.Length - 1; row++) // For loop to fill Datatable with array content
